@@ -12,10 +12,33 @@ const fs = require("fs");
 const app = express();
 const port = process.env.PORT;
 
-const logFolderPath = path.join(__dirname, "src", "log");
+const logFolderPath = path.join(__dirname, "/src/log");
 const currentDate = new Date().toISOString().split("T")[0];
 const logFileName = `${currentDate}.log`;
 const logFilePath = path.join(logFolderPath, logFileName);
+
+
+function deleteOldLogFiles() {
+    const today = new Date();
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 7);
+
+    fs.readdir(logFolderPath, (err, files) => {
+        if (err) throw err;
+
+        files.forEach(file => {
+            const fileCreationDate = fs.statSync(path.join(logFolderPath, file)).ctime;
+
+            if (fileCreationDate < sevenDaysAgo) {
+                fs.unlink(path.join(logFolderPath, file), err => {
+                    if (err) throw err;
+                    console.log(`Deleted old log file: ${file}`);
+                });
+            }
+        });
+    });
+}
+
 
 if (!fs.existsSync(logFolderPath)) {
     fs.mkdirSync(logFolderPath, { recursive: true });
@@ -23,6 +46,9 @@ if (!fs.existsSync(logFolderPath)) {
 
 // Middleware function to log requests
 app.use((req, res, next) => {
+
+    deleteOldLogFiles();
+
     const logData = `${new Date().toISOString()} - ${req.method} ${req.url}\n`;
     try {
         fs.appendFileSync(logFilePath, logData);

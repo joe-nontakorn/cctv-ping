@@ -6,6 +6,8 @@ body {
   font-size: 10px;
 }
 
+
+
 /* ไฟกระพริบสถานะ */
 .status-on {
   background-color: rgb(9, 226, 38);
@@ -24,6 +26,27 @@ body {
     background-color: white;
   }
 }
+
+.table1 tr{
+  width: 50px;
+}
+
+
+
+
+.table2.status-cell div {
+  width: 5px; 
+  height: 5px; 
+}
+
+
+
+
+
+
+
+
+
 
 
 /* เม้าชี้แสดง ip */
@@ -47,38 +70,27 @@ body {
   z-index: 999; /* กำหนดลำดับแสดงของ layer */
 }
 
-.table1 {
-  border-collapse: collapse; 
-  width: 100%;
-}
-
-.table1 th,
-.table1 td {
-  border: 1px solid black; 
-   width: 100px;
-}
-
-.table1 th {
-  background-color: #f2f2f2; 
-  text-align: left;
- 
-}
-
-.table1 td {
-  vertical-align: top;
-  text-align: center; 
-  /* width: 30px; */
-  height: 20px;
-
-
-}
-
-
 
 .table1 {
   border-collapse: collapse;
   width: 100%;
 }
+
+.table1 th {
+  width: 80px; /* กำหนดความกว้างของ th เป็น 100px */
+}
+
+.table1 th,
+.table1 td {
+  
+  border-collapse: collapse;
+  border: 1px solid black; 
+   width: 100px;
+   vertical-align: top;
+  text-align: center; 
+}
+
+
 
 
 .table3 {
@@ -116,6 +128,8 @@ body {
 .table-4 td {
   border: 1px solid black;
   padding: 4px;
+  width: 15px;
+  
 }
 
 
@@ -130,3 +144,25 @@ body {
 .room-name2 {
   font-weight: bold;
 }
+
+.date {
+  position: absolute;
+  top: 1px; 
+  right: 10px; 
+
+  background-color: rgba(224, 213, 48, 0.8); /* สีของพื้นหลัง */
+  padding: 1px 3cm ; /* ขนาดของพื้นหลัง */
+  border-radius: 5px; /* รัศมีของมุมของกรอบ */
+
+}
+
+.room-status{
+  width: 100%;
+
+}
+
+/* 
+
+.table-4 td {
+  width: 20px; 
+} */

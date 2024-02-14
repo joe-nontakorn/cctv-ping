@@ -69,12 +69,28 @@ const App = () => {
   }, [webSocketData]);
 
 
-  
+  function YourComponent() {
+    const currentDate = new Date();
+    // const thaiOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    // const thaiDate = currentDate.toLocaleDateString('th-TH', thaiOptions);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('th-TH', options);
+
+    return (
+      <div>
+        <h1>{formattedDate}</h1>
+      </div>
+    );
+  }
+
+
 
 
   return (
     <div className="table-container">
       <img src={require('../assets/jastel.jpg')} alt="Jastel Logo" />
+      <h2 className='date'> <YourComponent /> </h2>
+      <br></br>
       <table className="table1">
         <thead className='TTH'>
           <tr className='ab'>
@@ -99,26 +115,35 @@ const App = () => {
               room.roomname !== "OFFICE6" &&
 
               <td key={room.roomname}>
+                {room.roomname === "HBM" ? (
+                  <table className="table2">
+                    <tbody>
+                      <tr>
+                        <td>-</td>
 
-                <table className="table2">
-                  <tbody>
-                    {room.status.map((camera, index) => (
-                      <tr key={index}>
-                        <td
-                          className={`status-cell ${camera.camera === 'ON' ? 'status-on' : 'status-off'}`}
-                          title={camera.ip}
-                        >
-                          <a href={`http://${camera.ip}`} target="_blank" rel="noopener noreferrer">
-                            <div>{camera.camera}</div>
-                          </a>
-                        </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-
-
+                    </tbody>
+                  </table>
+                ) : (
+                  <table className="table2">
+                    <tbody>
+                      {room.status.map((camera, index) => (
+                        <tr key={index}>
+                          <td
+                            className={`status-cell ${camera.camera === 'ON' ? 'status-on' : 'status-off'}`}
+                            title={camera.ip}
+                            onClick={() => window.open(`http://${camera.ip}`, '_blank')}
+                            style={{ cursor: 'pointer' }}
+                          >
+                            <div>{index + 1}</div> {/* แสดงเลขลำดับ */}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </td>
+
             ))}
           </tr>
         </tbody>
@@ -142,10 +167,11 @@ const App = () => {
                         {room.status.map((camera, index) => (
                           <td key={index}
                             className={`status-cell ${camera.camera === 'ON' ? 'status-on' : 'status-off'}`}
-                            title={camera.ip}>
-                            <a href={`http://${camera.ip}`} target="_blank" rel="noopener noreferrer">
-                              <div>{camera.camera}</div>
-                            </a>
+                            title={camera.ip}
+                            onClick={() => window.open(`http://${camera.ip}`, '_blank')}
+                            style={{ cursor: 'pointer' }}>
+
+                            <div>{index + 1}</div> 
                           </td>
                         ))}
                       </tr>
