@@ -77,7 +77,7 @@ const App = () => {
     const formattedDate = currentDate.toLocaleDateString('th-TH', options);
 
 
-    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit'};
     const formattedTime = currentDate.toLocaleTimeString('th-TH', timeOptions);
 
 
@@ -97,8 +97,13 @@ const App = () => {
     <div className="table-container">
       <div className="img-container">
         <img src={require('../assets/jastel.jpg')} alt="Jastel Logo" />
-      </div>      <h2 className='date'> <YourComponent /> </h2>
+      </div>     
+       <h2 className='date'> <YourComponent /> </h2>
       <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      
       <h1 className='title'>Jastel CCVT Monitor</h1>
       <table className="table1">
         <thead className='TTH'>

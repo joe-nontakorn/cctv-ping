@@ -163,6 +163,10 @@ body {
 
 .title {
   font-size: 28px; /* กำหนดขนาดตัวอักษรเป็น 24px */
+  position: absolute;
+  top: 0;
+  left: 1cm;
+
 }
 
 .img-container {
