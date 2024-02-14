@@ -77,6 +77,8 @@ body {
 }
 
 .table1 th {
+  background-color: #c4c4c4; 
+
   width: 80px; /* กำหนดความกว้างของ th เป็น 100px */
 }
 
@@ -103,7 +105,6 @@ body {
 }
 
 .table3 th {
-  background-color: #f2f2f2; 
   text-align: left;
  
 }
@@ -115,7 +116,7 @@ body {
 
 .room-name2 {
   font-weight: bold;
-  background-color: #e2dede; 
+  background-color: #c4c4c4; 
 
 }
 
