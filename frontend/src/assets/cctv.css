@@ -8,7 +8,7 @@ body {
 
 /* ไฟกระพริบสถานะ */
 .status-on {
-  background-color: rgb(92, 240, 111);
+  background-color: rgb(9, 226, 38);
 }
 
 .status-off {
@@ -66,10 +66,11 @@ body {
 
 .table1 td {
   vertical-align: top;
-  /* padding: 2px; */
-
-  
   text-align: center; 
+  /* width: 30px; */
+  height: 20px;
+
+
 }
 
 
@@ -78,22 +79,6 @@ body {
   border-collapse: collapse;
   width: 100%;
 }
-
-.table2 {
-  width: 100%;
-}
-
-.table2 th,
-.table2 td {
-  border: 1px solid black;
-  vertical-align: top; 
-}
-
-.table2 td {
-  vertical-align: top;
-}
-
-
 
 
 .table3 {
