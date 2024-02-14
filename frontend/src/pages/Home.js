@@ -76,9 +76,16 @@ const App = () => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('th-TH', options);
 
+
+    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedTime = currentDate.toLocaleTimeString('th-TH', timeOptions);
+
+
     return (
       <div>
         <h1>{formattedDate}</h1>
+        <h2>{formattedTime}</h2>
+
       </div>
     );
   }
@@ -88,9 +95,11 @@ const App = () => {
 
   return (
     <div className="table-container">
-      <img src={require('../assets/jastel.jpg')} alt="Jastel Logo" />
-      <h2 className='date'> <YourComponent /> </h2>
+      <div className="img-container">
+        <img src={require('../assets/jastel.jpg')} alt="Jastel Logo" />
+      </div>      <h2 className='date'> <YourComponent /> </h2>
       <br></br>
+      <h1 className='title'>Jastel CCVT Monitor</h1>
       <table className="table1">
         <thead className='TTH'>
           <tr className='ab'>
@@ -171,7 +180,7 @@ const App = () => {
                             onClick={() => window.open(`http://${camera.ip}`, '_blank')}
                             style={{ cursor: 'pointer' }}>
 
-                            <div>{index + 1}</div> 
+                            <div>{index + 1}</div>
                           </td>
                         ))}
                       </tr>
