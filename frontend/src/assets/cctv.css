@@ -1,0 +1,147 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap');
+
+body {
+  font-family: 'Kanit', sans-serif;
+  font-size: 10px;
+}
+
+/* ไฟกระพริบสถานะ */
+.status-on {
+  background-color: rgb(92, 240, 111);
+}
+
+.status-off {
+  background-color: red;
+  animation: blink-animation 1s infinite alternate;
+}
+
+@keyframes blink-animation {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: white;
+  }
+}
+
+
+/* เม้าชี้แสดง ip */
+.status-cell {
+  
+  position: relative;
+}
+
+.status-cell:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%; /* จากด้านล่างของบล็อก */
+  left: 100%; /* จากซ้ายของบล็อก */
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-size: 14px; /* ปรับขนาดของ font */
+  z-index: 999; /* กำหนดลำดับแสดงของ layer */
+}
+
+.table1 {
+  border-collapse: collapse; 
+  width: 100%;
+}
+
+.table1 th,
+.table1 td {
+  border: 1px solid black; 
+   width: 100px;
+}
+
+.table1 th {
+  background-color: #f2f2f2; 
+  text-align: left;
+ 
+}
+
+.table1 td {
+  vertical-align: top;
+  /* padding: 2px; */
+
+  
+  text-align: center; 
+}
+
+
+
+.table1 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table2 {
+  width: 100%;
+}
+
+.table2 th,
+.table2 td {
+  border: 1px solid black;
+  vertical-align: top; 
+}
+
+.table2 td {
+  vertical-align: top;
+}
+
+
+
+
+.table3 {
+  border-collapse: collapse; 
+}
+
+.table3 th,
+.table3 td {
+  border: 1px solid black; 
+}
+
+.table3 th {
+  background-color: #f2f2f2; 
+  text-align: left;
+ 
+}
+
+.table3 td {
+  width: 5px;
+  text-align: center; 
+}
+
+.room-name2 {
+  font-weight: bold;
+  background-color: #e2dede; 
+
+}
+
+
+.table3 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-4 td {
+  border: 1px solid black;
+  padding: 4px;
+}
+
+
+.table1 {
+  width: 100%;
+}
+
+.table2, .table-4 {
+  width: auto; 
+}
+
+.room-name2 {
+  font-weight: bold;
+}
