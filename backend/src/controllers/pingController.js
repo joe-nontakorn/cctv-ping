@@ -343,7 +343,7 @@ const rooms = {
 };
 
 try {
-    const results = await Promise.all(
+    const results1 = await Promise.all(
         Object.entries(rooms).map(async ([room, ipAddresses]) => {
             const roomStatus = await Promise.all(
                 ipAddresses.map(async ip => {
@@ -358,8 +358,8 @@ try {
     res.status(200).json({
         success: true,
         message: "OK",
-        results: results.length,
-        data: results
+        results: results1.length,
+        data: results1
     });
 } catch (error) {
     console.error('Error:', error);
