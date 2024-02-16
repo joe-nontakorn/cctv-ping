@@ -2,7 +2,7 @@ const ping2 = require('ping');
 
 async function ping2Cctv(req, res) {
 
-    const cameras = [
+    const phase1 = [
         { ip: '172.20.3.150', name: '1Reception Room', phase: 1 },
         { ip: '172.20.3.151', name: '1Corridoors1', phase: 1 },
         { ip: '172.20.3.152', name: '1Telco Room2', phase: 1 },
@@ -22,8 +22,10 @@ async function ping2Cctv(req, res) {
         { ip: '172.20.3.26', name: '1EE Room1', phase: 1 },
         { ip: '172.20.3.38', name: '1WalkWay1', phase: 1 },
         { ip: '172.20.3.46', name: '1Pac Room1', phase: 1 },
-        { ip: '172.20.3.31', name: 'Telco Room2', phase: 1 },
+        { ip: '172.20.3.31', name: 'Telco Room2', phase: 1 }
+    ];
 
+    const phase2 = [
         { ip: '172.20.3.51', name: '2-CCTV 28', phase: 2 },
         { ip: '172.20.3.52', name: '2-CCTV 27', phase: 2 },
         { ip: '172.20.3.54', name: '2-CCTV 25', phase: 2 },
@@ -42,8 +44,10 @@ async function ping2Cctv(req, res) {
         { ip: '172.20.3.60', name: 'IDC2-4', phase: 2 },
         { ip: '172.20.3.61', name: 'IDC2-5', phase: 2 },
         { ip: '172.20.3.62', name: 'IDC2-6', phase: 2 },
-        { ip: '172.20.3.63', name: 'IDC2-7', phase: 2 },
+        { ip: '172.20.3.63', name: 'IDC2-7', phase: 2 }
+    ];
 
+    const phase3 = [
         { ip: '172.20.3.205', name: 'IDC3-1', phase: 3 },
         { ip: '172.20.3.206', name: 'IDC3-2', phase: 3 },
         { ip: '172.20.3.207', name: 'IDC3-3', phase: 3 },
@@ -57,34 +61,65 @@ async function ping2Cctv(req, res) {
         { ip: '172.20.3.215', name: 'IDC3-11', phase: 3 },
         { ip: '172.20.3.216', name: 'IDC3-12', phase: 3 },
         { ip: '172.20.3.215', name: 'IDC3-13', phase: 3 },
-        { ip: '172.20.3.218', name: 'IDC3-14', phase: 3 },
-
-        // Add more camera objects here
+        { ip: '172.20.3.218', name: 'IDC3-14', phase: 3 }
     ];
 
     try {
-        const results = await Promise.all(
-            cameras.map(async camera => {
-                const response = await ping2.promise.probe(camera.ip);
+        const results1 = await Promise.all(
+            phase1.map(async item => {
+                const response = await ping2.promise.probe(item.ip);
                 return {
-                    ip: camera.ip,
-                    name: camera.name,
-                    phase: camera.phase,
+                    ip: item.ip,
+                    name: item.name,
+                    phase: item.phase,
                     status: response.alive ? 'ON' : 'OFF'
                 };
             })
         );
-
+    
+        const results2 = await Promise.all(
+            phase2.map(async item => {
+                const response = await ping2.promise.probe(item.ip);
+                return {
+                    ip: item.ip,
+                    name: item.name,
+                    phase: item.phase,
+                    status: response.alive ? 'ON' : 'OFF'
+                };
+            })
+        );
+    
+        const results3 = await Promise.all(
+            phase3.map(async item => {
+                const response = await ping2.promise.probe(item.ip);
+                return {
+                    ip: item.ip,
+                    name: item.name,
+                    phase: item.phase,
+                    status: response.alive ? 'ON' : 'OFF'
+                };
+            })
+        );
+    
         res.status(200).json({
             success: true,
             message: "OK",
-            results: results.length,
-            data: results
+            results: {
+                results1: results1.length,
+                results2: results2.length,
+                results3: results3.length,
+                data: {
+                    phase1: results1,
+                    phase2: results2,
+                    phase3: results3
+                }
+            }
         });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Ping cctv error' });
     }
+    
 
 }
 

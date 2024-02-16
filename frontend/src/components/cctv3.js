@@ -20,46 +20,105 @@ const Table3 = ({ apiData2 }) => {
     fetchData();
   }, []);
 
-  const calculatePageNumber = (index) => {
-    return Math.floor(index / data.data.length) + 1;
-  };
-
+  // Render data in a table format
   return (
-    <div>
-      <table className="table5">
+    <div className="container">
+      <table className="phase1">
+      <caption className="caption-text">Phase 1</caption>
         <thead>
-          <tr>
-            {data &&
-              data.data.map((item) => (
-                <th key={item.id} style={{ writingMode: "vertical-lr" }}>
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase1.map((item, index) => (
+                <th key={index} className="vertical-header">
                   {item.name}
                 </th>
               ))}
-          </tr>
+            </tr>
+          )}
         </thead>
         <tbody>
-          <tr>
-            {data &&
-              data.data.map((item, index) => (
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase1.map((item, index) => (
                 <td
-                  key={item.id}
-                  className={`block-frame ${
+                  className={`status-cell ${
                     item.status === "ON" ? "status-on" : "status-off"
                   }`}
                   title={item.ip}
                   onClick={() => window.open(`http://${item.ip}`, "_blank")}
                   style={{ cursor: "pointer" }}
                 >
-                  <table className="inner-table">
-                    <tbody>
-                      <tr>
-                       <div>{calculatePageNumber(index)}</div>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div>{index + 1}</div> {/* แสดงเลขลำดับ */}
                 </td>
               ))}
-          </tr>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <table className="phase2">
+      <caption className="caption-text">Phase 2</caption>
+        <thead>
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase2.map((item, index) => (
+                <th key={index} className="vertical-header">
+                  {item.name}
+                </th>
+              ))}
+            </tr>
+          )}
+        </thead>
+        <tbody>
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase2.map((item, index) => (
+                <td
+                  className={`status-cell ${
+                    item.status === "ON" ? "status-on" : "status-off"
+                  }`}
+                  title={item.ip}
+                  onClick={() => window.open(`http://${item.ip}`, "_blank")}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div>{index + 1}</div> {/* แสดงเลขลำดับ */}
+                </td>
+              ))}
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <table className="phase3">
+      <caption className="caption-text">Phase 3</caption>
+        <thead>
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase3.map((item, index) => (
+                <th key={index} className="vertical-header">
+                  {item.name}
+                </th>
+              ))}
+            </tr>
+          )}
+        </thead>
+        <tbody>
+          {data && data.results && (
+            <tr>
+              {data.results.data.phase3.map((item, index) => (
+                <td
+                  className={`status-cell ${
+                    item.status === "ON" ? "status-on" : "status-off"
+                  }`}
+                  title={item.ip}
+                  onClick={() => window.open(`http://${item.ip}`, "_blank")}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div>{index + 1}</div> {/* แสดงเลขลำดับ */}
+                </td>
+              ))}
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
