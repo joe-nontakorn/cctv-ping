@@ -1,6 +1,7 @@
 // src/components/cctv1.js
 
 import React from "react";
+import "../assets/cctv.css";
 
 const Table2 = ({ apiData }) => {
   return (

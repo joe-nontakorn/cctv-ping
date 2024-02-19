@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../assets/cctv.css";
 import Table1 from "../components/cctv1";
 import Table2 from "../components/cctv2";
 import Table3 from "../components/cctv3";
@@ -26,9 +25,9 @@ const App = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 2000); // Refresh every 2 seconds
+    const intervalId = setInterval(fetchData, 2000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   // Connect to WebSocket server
@@ -107,9 +106,8 @@ const App = () => {
 
       <Table1 apiData={apiData} />
       <Table2 apiData={apiData} />
-      <br></br>
       <Table3 apiData2={apiData} />
-
+      
     </div>
   );
 };

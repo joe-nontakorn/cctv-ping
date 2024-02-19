@@ -1,4 +1,6 @@
 import React from "react";
+import "../assets/cctv.css";
+
 
 const Table1 = ({ apiData }) => {
   return (
