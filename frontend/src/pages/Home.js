@@ -29,7 +29,10 @@ const App = () => {
           // นับจำนวน IP ทั้งหมด
           let totalIPCount = 0;
           response.data.data.forEach(room => {
-            totalIPCount += room.status.length;
+            // ตรวจสอบว่าห้องไม่ใช่ "HBM" ก่อนที่จะนับ
+            if (room.roomname !== "HBM") {
+              totalIPCount += room.status.length;
+            }
           });
           setTotalIP(totalIPCount);
         }
@@ -38,17 +41,20 @@ const App = () => {
         if (response.data && response.data.data) {
           let totalOnlineCCTV = 0;
           let totalOfflineCCTV = 0;
-  
+        
           response.data.data.forEach(room => {
-            room.status.forEach(camera => {
-              if (camera.camera === "ON") {
-                totalOnlineCCTV++;
-              } else {
-                totalOfflineCCTV++;
-              }
-            });
+            // ตรวจสอบว่าห้องไม่ใช่ "HBM" ก่อนที่จะนับ
+            if (room.roomname !== "HBM") {
+              room.status.forEach(camera => {
+                if (camera.camera === "ON") {
+                  totalOnlineCCTV++;
+                } else if (camera.camera === "OFF") {
+                  totalOfflineCCTV++;
+                }
+              });
+            }
           });
-  
+        
           setTotalOnlineCCTV(totalOnlineCCTV);
           setTotalOfflineCCTV(totalOfflineCCTV);
         }
@@ -147,7 +153,7 @@ const App = () => {
       <h2 className="title2">Total CCTV: {totalCCTV}</h2>
       <h2 className="title3">Online CCTV: {totalOnlineCCTV}</h2>
       <h2 className="title4">Offline CCTV: {totalOfflineCCTV}</h2>
-      <h2 className="title5">Node center : 119</h2>
+      <h2 className="title5">Node center : 69</h2>
 
 
 
