@@ -162,13 +162,39 @@ body {
 
 }
 
-.title {
-  font-size: 28px; /* กำหนดขนาดตัวอักษรเป็น 24px */
-  position: absolute;
-  top: 0;
-  left: 1cm;
-
+.title1 {
+  font-size: 28px;
+  position: absolute; /* เปลี่ยนจาก absolute เป็น relative */
+  top: 0; /* ให้อยู่ตรงกับตำแหน่งปัจจุบัน */
 }
+
+.title2 {
+  font-size: 20px;
+  position: absolute;
+  top: 45px; /* ปรับค่า top เพื่อให้ลอยลงมาจาก .title1 */
+}
+
+.title3 {
+  font-size: 18px;
+  position: absolute;
+  top: 75px; /* ปรับค่า top เพื่อให้ลอยลงมาจาก .title1 */
+}
+
+.title4 {
+  font-size: 18px;
+  position: absolute;
+  top: 100px; /* ปรับค่า top เพื่อให้ลอยลงมาจาก .title1 */
+}
+
+
+.title5 {
+  font-size: 15px;
+  position: absolute;
+  top: 130px; /* ปรับค่า top เพื่อให้ลอยลงมาจาก .title1 */
+}
+
+
+
 
 .img-container {
   text-align: center; /* จัดข้อความใน div ให้ตรงกลาง */

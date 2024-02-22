@@ -7,6 +7,11 @@ import Table3 from "../components/cctv3";
 const App = () => {
   const [apiData, setApiData] = useState(null);
   const [webSocketData, setWebSocketData] = useState(null);
+  const [totalCCTV, setTotalIP] = useState(0);
+  const [totalOnlineCCTV, setTotalOnlineCCTV] = useState(0);
+  const [totalOfflineCCTV, setTotalOfflineCCTV] = useState(0);
+  
+
 
   console.log(process.env.REACT_APP_HOST);
 
@@ -18,10 +23,45 @@ const App = () => {
           process.env.REACT_APP_HOST + "/api/ping/check-cctv"
         );
         setApiData(response.data);
+  
+        
+        if (response.data && response.data.data) {
+          // นับจำนวน IP ทั้งหมด
+          let totalIPCount = 0;
+          response.data.data.forEach(room => {
+            totalIPCount += room.status.length;
+          });
+          setTotalIP(totalIPCount);
+        }
+
+
+        if (response.data && response.data.data) {
+          let totalOnlineCCTV = 0;
+          let totalOfflineCCTV = 0;
+  
+          response.data.data.forEach(room => {
+            room.status.forEach(camera => {
+              if (camera.camera === "ON") {
+                totalOnlineCCTV++;
+              } else {
+                totalOfflineCCTV++;
+              }
+            });
+          });
+  
+          setTotalOnlineCCTV(totalOnlineCCTV);
+          setTotalOfflineCCTV(totalOfflineCCTV);
+        }
+
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+
+    
+
+    
 
     fetchData();
 
@@ -102,7 +142,14 @@ const App = () => {
       <br></br>
       <br></br>
 
-      <h1 className="title">Jastel CCVT Monitor</h1>
+      <h1 className="title1">Jastel CCTV Monitor</h1>
+
+      <h2 className="title2">Total CCTV: {totalCCTV}</h2>
+      <h2 className="title3">Online CCTV: {totalOnlineCCTV}</h2>
+      <h2 className="title4">Offline CCTV: {totalOfflineCCTV}</h2>
+      <h2 className="title5">Node center : 119</h2>
+
+
 
       <Table1 apiData={apiData} />
       <Table2 apiData={apiData} />

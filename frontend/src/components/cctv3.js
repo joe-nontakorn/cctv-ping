@@ -4,6 +4,7 @@ import "../assets/table3.css";
 
 const Table3 = ({ apiData2 }) => {
   const [data, setApiData] = useState(null);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,7 @@ const Table3 = ({ apiData2 }) => {
     };
 
     fetchData();
-  }, []);
+  }, [apiData2]);
 
   // Render data in a table format
   return (
