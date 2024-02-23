@@ -1,3 +1,4 @@
+//home page
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table1 from "../components/cctv1";
@@ -10,6 +11,10 @@ const App = () => {
   const [totalCCTV, setTotalIP] = useState(0);
   const [totalOnlineCCTV, setTotalOnlineCCTV] = useState(0);
   const [totalOfflineCCTV, setTotalOfflineCCTV] = useState(0);
+
+  const [totalCCTV2, setTotalIP2] = useState(0);
+  const [totalOnlineCCTV2, setTotalOnlineCCTV2] = useState(0);
+  const [totalOfflineCCTV2, setTotalOfflineCCTV2] = useState(0);
   
 
 
@@ -17,11 +22,12 @@ const App = () => {
 
   // Fetch API data
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData1 = async () => {
       try {
         const response = await axios.get(
           process.env.REACT_APP_HOST + "/api/ping/check-cctv"
         );
+        
         setApiData(response.data);
   
         
@@ -65,16 +71,64 @@ const App = () => {
       }
     };
 
-    
+    fetchData1();
 
-    
-
-    fetchData();
-
-    const intervalId = setInterval(fetchData, 2000);
+    const intervalId = setInterval(fetchData1, 2000);
 
     return () => clearInterval(intervalId);
   }, []);
+
+//components cctv3
+  useEffect(() => {
+    const fetchData2 = async () => {
+      try {
+        const response = await axios.get(
+          process.env.REACT_APP_HOST + "/api/ping/check-cctv2"
+        );
+        setApiData(response.data);
+  
+        if (response.data && response.data.results && response.data.results.data) {
+          let totalIPCount2 = 0;
+          Object.values(response.data.results.data).forEach(phase => {
+            phase.forEach(room => {
+              totalIPCount2++;
+            });
+          });
+          setTotalIP2(totalIPCount2);
+  
+          let totalOnlineCCTV2 = 0;
+          let totalOfflineCCTV2 = 0;
+  
+          Object.values(response.data.results.data).forEach(phase => {
+            phase.forEach(room => {
+              if (room.status === "ON") {
+                totalOnlineCCTV2++;
+              } else {
+                totalOfflineCCTV2++;
+              }
+            });
+          });
+  
+          setTotalOnlineCCTV2(totalOnlineCCTV2);
+          setTotalOfflineCCTV2(totalOfflineCCTV2);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData2();
+  }, [ setTotalIP2, setTotalOfflineCCTV2, setTotalOnlineCCTV2]);
+
+
+  const total_ip = totalCCTV + totalCCTV2
+  const On_line = totalOnlineCCTV + totalOnlineCCTV2
+  const Off_line = totalOfflineCCTV + totalOfflineCCTV2
+
+  
+
+
+
 
   // Connect to WebSocket server
   useEffect(() => {
@@ -150,9 +204,9 @@ const App = () => {
 
       <h1 className="title1">Jastel CCTV Monitor</h1>
 
-      <h2 className="title2">Total CCTV: {totalCCTV}</h2>
-      <h2 className="title3">Online CCTV: {totalOnlineCCTV}</h2>
-      <h2 className="title4">Offline CCTV: {totalOfflineCCTV}</h2>
+      <h2 className="title2">Total CCTV: {total_ip}</h2>
+      <h2 className="title3">Online CCTV: {On_line}</h2>
+      <h2 className="title4">Offline CCTV: {Off_line}</h2>
       <h2 className="title5">Node center : 69</h2>
 
 

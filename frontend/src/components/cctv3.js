@@ -1,29 +1,65 @@
+//components table3
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../assets/table3.css";
 
-const Table3 = ({ apiData2 }) => {
+const Table3 = () => {
   const [data, setApiData] = useState(null);
+  // const [totalCCTV2, setTotalIP2] = useState(0);
+  // const [totalOnlineCCTV2, setTotalOnlineCCTV2] = useState(0);
+  // const [totalOfflineCCTV2, setTotalOfflineCCTV2] = useState(0);
   
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData2 = async () => {
       try {
         const response = await axios.get(
           process.env.REACT_APP_HOST + "/api/ping/check-cctv2"
         );
         setApiData(response.data);
+  
+        // if (response.data && response.data.results && response.data.results.data) {
+        //   let totalIPCount2 = 0;
+        //   Object.values(response.data.results.data).forEach(phase => {
+        //     phase.forEach(room => {
+        //       totalIPCount2++;
+        //     });
+        //   });
+        //   setTotalIP2(totalIPCount2);
+  
+        //   let totalOnlineCCTV2 = 0;
+        //   let totalOfflineCCTV2 = 0;
+  
+        //   Object.values(response.data.results.data).forEach(phase => {
+        //     phase.forEach(room => {
+        //       if (room.status === "ON") {
+        //         totalOnlineCCTV2++;
+        //       } else {
+        //         totalOfflineCCTV2++;
+        //       }
+        //     });
+        //   });
+  
+        //   setTotalOnlineCCTV2(totalOnlineCCTV2);
+        //   setTotalOfflineCCTV2(totalOfflineCCTV2);
+        // }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
-  }, [apiData2]);
+    fetchData2();
+  }, []);
+  
 
   // Render data in a table format
   return (
     <div className="container">
+
+      {/* <h2 className="">Total CCTV: {totalCCTV2}</h2>
+      <h2 className="">Online CCTV: {totalOnlineCCTV2}</h2>
+      <h2 className="">Offline CCTV: {totalOfflineCCTV2}</h2>
+      <h2 className="">Node center : 3</h2> */}
       <table className="phase1">
       <caption className="caption-text">Phase 1</caption>
         <thead>
