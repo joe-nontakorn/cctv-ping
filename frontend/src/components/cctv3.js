@@ -56,11 +56,11 @@ const Table3 = () => {
       
       <br></br>
       <h1 className="IDC" aria-label="Description of the Heading"> </h1>
-      <h1 className="IDC1">Node IDC</h1>
+      {/* <h1 className="IDC1">Node IDC</h1> */}
 
       <div className="container">
         <table className="phase1">
-          <caption className="caption-text">Phase 1</caption>
+          <caption className="caption-text">IDC Phase 1</caption>
           <thead>
             {data && data.results && (
               <tr>
@@ -93,7 +93,7 @@ const Table3 = () => {
         </table>
 
         <table className="phase2">
-          <caption className="caption-text">Phase 2</caption>
+          <caption className="caption-text">IDC Phase 2</caption>
           <thead>
             {data && data.results && (
               <tr>
@@ -126,7 +126,7 @@ const Table3 = () => {
         </table>
 
         <table className="phase3">
-          <caption className="caption-text">Phase 3</caption>
+          <caption className="caption-text">IDC Phase 3</caption>
           <thead>
             {data && data.results && (
               <tr>
