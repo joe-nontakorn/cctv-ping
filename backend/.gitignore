@@ -1,7 +1,5 @@
 .env
 echo .env >> .gitignore
 
-git rm --cached .env
-git rm -f .env
-git commit -m "Remove .env from repository"
+
 
