@@ -204,9 +204,9 @@ const App = () => {
 
       <h1 className="title1">Jastel CCTV Monitor</h1>
 
-      <h2 className="title2">Total CCTV: {total_ip}</h2>
-      <h2 className="title3">Online CCTV: {On_line}</h2>
-      <h2 className="title4">Offline CCTV: {Off_line}</h2>
+      <h2 className="title2">Total : {total_ip}</h2>
+      <h2 className="title3">Online : {On_line}</h2>
+      <h2 className="title4">Offline : {Off_line}</h2>
       <h2 className="title5">Node center : 69</h2>
 
 
