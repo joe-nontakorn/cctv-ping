@@ -74,8 +74,9 @@ const wss = new WebSocket.Server({ server });
 // Call WebSocket service function
 webSocketService(wss);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build'));
+app.get('/cctv-ping/', (req, res) => {
+    // Handle WebSocket connection here
+    res.send('WebSocket connection established');
 });
 
 server.listen(port, () => {
