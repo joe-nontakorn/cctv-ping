@@ -132,7 +132,7 @@ const App = () => {
 
   // Connect to WebSocket server
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:4000");
+    const ws = new WebSocket("ws://localhost:4001");
 
     console.log("WebSocket :", ws);
 
@@ -161,7 +161,7 @@ const App = () => {
     };
 
     if (webSocketData) {
-      const ws = new WebSocket("ws://localhost:4000");
+      const ws = new WebSocket("ws://localhost:4001");
       ws.onmessage = handleMessage;
 
       return () => {
