@@ -132,7 +132,7 @@ const App = () => {
 
   // Connect to WebSocket server
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3000");
+    const ws = new WebSocket("ws://localhost:"  + process.env.REACT_APP_PORT);
 
     console.log("WebSocket :", ws);
 
@@ -161,7 +161,7 @@ const App = () => {
     };
 
     if (webSocketData) {
-      const ws = new WebSocket("ws://localhost:3000");
+      const ws = new WebSocket("ws://localhost:" + process.env.REACT_APP_PORT);
       ws.onmessage = handleMessage;
 
       return () => {
