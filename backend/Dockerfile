@@ -1,17 +1,10 @@
-FROM node:16-alpine
+FROM node:lts-alpine
 
-WORKDIR /app
+WORKDIR /backend/app.js
 
-COPY package*.json ./
-
+COPY package.json .
 RUN npm install
 
-COPY backend /app/backend
-
-RUN npm run build
-
-COPY frontend/build frontend/public
-
-EXPOSE 3000
+COPY . .
 
 CMD ["npm", "start"]
