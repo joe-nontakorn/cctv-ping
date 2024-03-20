@@ -17,7 +17,6 @@ const currentDate = new Date().toISOString().split("T")[0];
 const logFileName = `${currentDate}.log`;
 const logFilePath = path.join(logFolderPath, logFileName);
 
-
 function deleteOldLogFiles() {
     const today = new Date();
     const sevenDaysAgo = new Date(today);
@@ -39,23 +38,19 @@ function deleteOldLogFiles() {
     });
 }
 
-
 if (!fs.existsSync(logFolderPath)) {
     fs.mkdirSync(logFolderPath, { recursive: true });
 }
 
-// Middleware function to log requests
 app.use((req, res, next) => {
-
     deleteOldLogFiles();
-
     const logData = `${new Date().toISOString()} - ${req.method} ${req.url}\n`;
     try {
         fs.appendFileSync(logFilePath, logData);
         next();
     } catch (err) {
         console.error("Error writing to log file:", err);
-        next(err); // Pass error to Express error handler middleware
+        next(err);
     }
 });
 
@@ -65,38 +60,15 @@ app.use(cors());
 
 appRoutes.routes({ app: app });
 
-// Create HTTP server
 const server = http.createServer(app);
-
-// Pass HTTP server to WebSocket server
 const wss = new WebSocket.Server({ server });
 
+webSocketService(wss);
 
-// Handle WebSocket connections
-wss.on('connection', (ws, req) => {
-    console.log('WebSocket connection established');
-
-    // Send a welcome message to the client
-    ws.send('WebSocket connection established');
-
-    // Handle incoming messages from the client
-    ws.on('message', (message) => {
-        console.log('Received message:', message);
-    });
-
-    // Handle WebSocket disconnections
-    ws.on('close', () => {
-        console.log('WebSocket connection closed');
-    });
+app.all('*', (req, res, next) => {
+    res.sendFile("index.html", { root: path.join(__dirname, "../frontend/build") });
+    next();
 });
-
-
- // Handle unhandled routes
- app.all('*', (req, res, next) => {
-    res.sendFile("index.html", { root: __dirname + "../frontend/build" });
-    // next(new ErrorHandler(`${req.originalUrl} route not found`, 404));
-});
-
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
