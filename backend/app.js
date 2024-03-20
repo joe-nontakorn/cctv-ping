@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-const appRoutes = require("./src/router/router");
+const appRoutes = require("../backend/src/router/router");
 require("dotenv").config();
 const cors = require('cors');
 const WebSocket = require('ws');
@@ -12,7 +12,7 @@ const fs = require("fs");
 const app = express();
 const port = process.env.PORT;
 
-const logFolderPath = path.join(__dirname, "/src/log");
+const logFolderPath = path.join(__dirname, "../backend/src/log");
 const currentDate = new Date().toISOString().split("T")[0];
 const logFileName = `${currentDate}.log`;
 const logFilePath = path.join(logFolderPath, logFileName);
@@ -89,6 +89,14 @@ wss.on('connection', (ws, req) => {
         console.log('WebSocket connection closed');
     });
 });
+
+
+ // Handle unhandled routes
+ app.all('*', (req, res, next) => {
+    res.sendFile("index.html", { root: __dirname + "../frontend/build" });
+    // next(new ErrorHandler(`${req.originalUrl} route not found`, 404));
+});
+
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
