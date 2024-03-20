@@ -5,7 +5,7 @@ import Home from '../pages/Home';
 const CustomRouter = () => {
   return (
     <Router>
-        <Route path="/" component={Home} />
+        <Route path="/cctv-ping" component={Home} />
     </Router>
   );
 };
