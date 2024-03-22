@@ -18,7 +18,7 @@ const App = () => {
   
 
 
-  console.log(process.env.REACT_APP_HOST);
+  console.log({ api: process.env.REACT_APP_HOST });
 
   // Fetch API data
   useEffect(() => {
@@ -132,7 +132,7 @@ const App = () => {
 
   // Connect to WebSocket server
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:"  + process.env.REACT_APP_PORT);
+    const ws = new WebSocket("ws://cctv.jastel.local");
 
     console.log("WebSocket :", ws);
 
@@ -161,7 +161,7 @@ const App = () => {
     };
 
     if (webSocketData) {
-      const ws = new WebSocket("ws://localhost:" + process.env.REACT_APP_PORT);
+      const ws = new WebSocket("ws://cctv.jastel.local");
       ws.onmessage = handleMessage;
 
       return () => {

@@ -370,4 +370,4 @@ try {
 
 }
 
-module.exports = {pingCctv};
+module.exports = { pingCctv };
