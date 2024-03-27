@@ -16,10 +16,6 @@ const App = () => {
   const [totalOnlineCCTV2, setTotalOnlineCCTV2] = useState(0);
   const [totalOfflineCCTV2, setTotalOfflineCCTV2] = useState(0);
   
-
-
-  console.log({ api: process.env.REACT_APP_HOST });
-
   // Fetch API data
   useEffect(() => {
     const fetchData1 = async () => {
@@ -132,7 +128,7 @@ const App = () => {
 
   // Connect to WebSocket server
   useEffect(() => {
-    const ws = new WebSocket("ws://cctv.jastel.local");
+    const ws = new WebSocket("ws://cctv.jastel.internal");
 
     console.log("WebSocket :", ws);
 
@@ -161,7 +157,7 @@ const App = () => {
     };
 
     if (webSocketData) {
-      const ws = new WebSocket("ws://cctv.jastel.local");
+      const ws = new WebSocket("ws://cctv.jastel.internal");
       ws.onmessage = handleMessage;
 
       return () => {
