@@ -148,6 +148,18 @@ const App = () => {
     };
   }, []);
 
+  
+  useEffect(() => {
+    const fetchData1 = () => {
+      // Implement your logic to fetch data here
+      console.log("Fetching data from server...");
+    };
+
+    const intervalId = setInterval(fetchData1, 2000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   useEffect(() => {
     const handleMessage = (event) => {
       const data = JSON.parse(event.data);
