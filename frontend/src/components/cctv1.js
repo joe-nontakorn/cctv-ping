@@ -4,8 +4,6 @@ import "../assets/cctv.css";
 
 const Table1 = ({ apiData }) => {
   
-  console.log({ api: process.env.REACT_APP_HOST });
-
   return (
     <div>
       <table className="table1">

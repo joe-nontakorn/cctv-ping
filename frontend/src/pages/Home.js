@@ -26,7 +26,6 @@ const App = () => {
         
         setApiData(response.data);
   
-        
         if (response.data && response.data.data) {
           // นับจำนวน IP ทั้งหมด
           let totalIPCount = 0;
